@@ -105,7 +105,7 @@ export default function App() {
       </View>
       {/* <SearchDropDown /> */}
 
-      <View className="items">
+      <View style={styles.items}>
         {!newfItems.length && (
           <Text>There are currently no items to display</Text>
         )}
@@ -113,15 +113,20 @@ export default function App() {
           return (
             <ScrollView>
               <View style={styles.eachItem} key={index}>
-                <Text>{element}</Text>
-
+                <View>
+                  <Text>
+                    <Icon name="circle" size={10} style={{ marginLeft: 30 }} />
+                    <View style={styles.circle} />
+                    {element}
+                    <View styles={styles.trash} />
+                    <Icon
+                      name="trash"
+                      size={20}
+                      onPress={() => deleteItem(index)}
+                    />
+                  </Text>
+                </View>
                 {/* eslint-disable-next-line react/self-closing-comp */}
-
-                <Icon
-                  name="trash"
-                  size={20}
-                  onPress={() => deleteItem(index)}
-                />
               </View>
             </ScrollView>
           );
@@ -149,8 +154,9 @@ const styles = StyleSheet.create({
     // flex: 1,
     // alignContent: "center",
     // justifyContent: "center",
-    backgroundColor: "#ECF0F1",
+    backgroundColor: "#5616e0",
     fontFamily: "Roboto_medium",
+    color: "#fff",
   },
 
   // textStyle: {
@@ -169,7 +175,7 @@ const styles = StyleSheet.create({
   textInput: {
     width: "80%",
     borderRadius: 20,
-    backgroundColor: "#d4d4d4",
+    backgroundColor: "#fff",
     fontSize: 20,
     fontWeight: "bold",
     paddingHorizontal: 20,
@@ -185,16 +191,32 @@ const styles = StyleSheet.create({
     fontSize: 100,
   },
   writeTaskWrapper: {
-    marginTop: 400,
+    marginTop: 300,
     flex: 1,
     backgroundColor: "#d4d4d4",
     height: 10,
     paddingLeft: 10,
+    color: "#5616e0",
   },
   input: {
     height: 40,
   },
+
   eachItem: {
-    marginTop: 10,
+    marginTop: 20,
+    backgroundColor: "#fff",
+    width: "50%",
+    marginLeft: "10%",
+    borderRadius: 20,
+    paddingLeft: 2,
+    paddingBottom: 3,
+    paddingTop: 3,
+    flex: 1,
+    textAlign: "center",
+    alignItems: "flex-start",
+  },
+  circle: {
+    marginLeft: 3,
+    marginRight: 17,
   },
 });
